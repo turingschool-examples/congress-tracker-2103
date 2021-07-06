@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   root "welcome#index"
   get '/register', to: 'users#new'
   post '/users', to: 'users#create'
+  get '/login', to:'sessions#new'
+  post '/login', to:'sessions#create'
+  # get '/logout', to: 'sessions#logout_user' # using get AND destroy here since I want 'Log out' to be a link, and link defaults to a get. But, I also don't want the DELETE '/login' path to be used for anything else.
+  delete '/logout', to: 'sessions#destroy'
 end

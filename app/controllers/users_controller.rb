@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     def new 
         @user = User.new
+        # require 'pry';binding.pry
     end 
 
     def create
