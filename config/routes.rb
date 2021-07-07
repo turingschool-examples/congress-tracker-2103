@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   post '/login', to:'sessions#create'
   # get '/logout', to: 'sessions#logout_user' # using get AND destroy here since I want 'Log out' to be a link, and link defaults to a get. But, I also don't want the DELETE '/login' path to be used for anything else.
   delete '/logout', to: 'sessions#destroy'
+
+  namespace :admin do
+    get '/dashboard', to: 'dashboard#index'
+  end 
 end
