@@ -69,4 +69,7 @@ RSpec.configure do |config|
     end
   end
 
+  config.include Rails.application.routes.url_helpers
+  config.include Capybara::DSL
+
 end
