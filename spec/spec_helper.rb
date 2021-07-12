@@ -96,3 +96,10 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+def all_senators_stub
+  response_body = File.read('spec/fixtures/senators.json')
+
+  stub_request(:get, "https://api.propublica.org/congress/v1/117/senate/members.json").
+  to_return(status: 200, body: response_body, headers: {})
+end

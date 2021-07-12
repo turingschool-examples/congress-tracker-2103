@@ -13,6 +13,7 @@ describe CongressService do
 
         expect(response).to be_a Hash
         expect(response[:results].first[:members]).to be_an Array
+        
         senate_member_data = response[:results].first[:members].first
 
         expect(senate_member_data).to have_key :first_name

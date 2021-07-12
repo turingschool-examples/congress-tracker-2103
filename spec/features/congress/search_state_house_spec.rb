@@ -5,13 +5,6 @@ RSpec.describe 'State House Member Search' do
       json_response = File.read('spec/fixtures/colorado_house_members.json')
       
       stub_request(:get, "https://api.propublica.org/congress/v1/members/house/CO/current.json").
-      with(
-        headers: {
-       'Accept'=>'*/*',
-       'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-       'User-Agent'=>'Faraday v1.5.0',
-       'X-Api-Key'=>ENV['PROPUBLICA_API_KEY']
-        }).
       to_return(status: 200, body: json_response, headers: {})
 
       visit root_path
