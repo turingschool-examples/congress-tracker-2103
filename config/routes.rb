@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
 
   post '/search', to: 'congress#search'
+  post '/search_state', to: 'congress#search_state'
 end

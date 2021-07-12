@@ -1,13 +1,18 @@
 class CongressController < ApplicationController
   def search
-    response = Faraday.get('https://api.propublica.org/congress/v1/117/senate/members.json') do |req|
-      req.headers['X-API-KEY'] = ENV['PROPUBLICA_API_KEY']
+    @found_senator = CongressFacade.find_senator_by_last_name(params[:search])
+  end
+
+  def search_state
+    state = params[:state]
+    conn = Faraday.new(url: "https://api.propublica.org") do |faraday|
+      faraday.headers["X-API-KEY"] = ENV['PROPUBLICA_API_KEY']
     end
+
+    response = conn.get("/congress/v1/members/house/#{state}/current.json")
+
     json = JSON.parse(response.body, symbolize_names: true)
-    senators = json[:results].first[:members]
-    @found_senator = senators.find do |senator|
-      # match last name with search param
-      senator[:last_name] == params[:search]
-    end
+
+    @house_members = json[:results]
   end
 end
