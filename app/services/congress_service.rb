@@ -1,7 +1,10 @@
 class CongressService 
     def self.get_senate_members
-        response = conn.get("/congress/v1/117/senate/members.json")
-        parse_json(response)
+        Rails.cache.fetch('senate-member-data') do 
+            require 'pry';binding.pry
+            response = conn.get("/congress/v1/117/senate/members.json")
+            parse_json(response)
+        end 
     end 
 
     def self.house_members(state) 

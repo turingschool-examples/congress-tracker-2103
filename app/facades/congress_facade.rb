@@ -6,9 +6,11 @@ class CongressFacade
     end 
 
     def self.all_senators 
-        CongressService.get_senate_members[:results].first[:members].map do |senator| 
-            SenateMember.new(senator)
-        end 
+        # Rails.cache.fetch('all-senators') do 
+            CongressService.get_senate_members[:results].first[:members].map do |senator| 
+                SenateMember.new(senator)
+            end 
+        # end 
     end 
 
     def self.find_all_house_members_by_state(state)
