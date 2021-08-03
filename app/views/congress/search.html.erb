@@ -1,2 +1,6 @@
-<h1>Senator <%= @found_senator.first_name %> <%= @found_senator.last_name %></h1>
-<p>Twitter Handle: <%= @found_senator.twitter_account %></p>
+<% begin %>
+  <h1>Senator <%= @found_senator.first_name %> <%= @found_senator.last_name %></h1>
+  <p>Twitter Handle: <%= @found_senator.twitter_account %></p>
+<% rescue NoMethodError => e %>
+  <p>No Senators Matched your Search 😭</p>
+<% end %>

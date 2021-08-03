@@ -20,6 +20,7 @@ gem 'faraday'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'fast_jsonapi'
 
 group :development, :test do
   gem 'capybara'
